@@ -1,11 +1,16 @@
-<?php include __DIR__ . '/../shares/header.php'; ?>
+<?php 
+include __DIR__ . '/../shares/header.php'; 
+?>
 <div class="container mt-4">
     <h1 class="mb-4">TRANG NHÂN VIÊN</h1>
     
     <div class="mb-3">
-        <a href="/QL_NhanSu/Employee/add" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Thêm Nhân Viên
-        </a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+            <a href="/QL_NhanSu/Employee/add" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Thêm Nhân Viên
+            </a>
+        <?php endif; ?>
+        <a href="/QL_NhanSu/Login/logout" class="btn btn-secondary float-end">Đăng Xuất</a>
     </div>
 
     <div class="table-responsive">
@@ -42,15 +47,17 @@
                             <td><?php echo htmlspecialchars($employee->TenPhong ?? 'None', ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo number_format($employee->Luong, 0, ',', '.'); ?></td>
                             <td>
-                                <a href="/QL_NhanSu/Employee/edit/<?php echo $employee->MaNV; ?>" 
-                                   class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <a href="/QL_NhanSu/Employee/delete/<?php echo $employee->MaNV; ?>" 
-   class="btn btn-danger btn-sm" 
+                                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                                    <a href="/QL_NhanSu/Employee/edit/<?php echo $employee->MaNV; ?>" 
+                                       class="btn btn-warning btn-sm">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="/QL_NhanSu/Employee/delete/<?php echo $employee->MaNV; ?>" 
+                                    class="btn btn-danger btn-sm" 
    onclick="return confirm('Bạn muốn xóa nhân viên này?');">
     <i class="bi bi-trash"></i>
-</a>
+                                    </a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -58,7 +65,6 @@
             </tbody>
         </table>
 
-        <!-- Pagination Controls -->
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center mt-3">
                 <?php if ($page > 1): ?>
