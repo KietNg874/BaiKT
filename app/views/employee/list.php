@@ -49,7 +49,8 @@ include __DIR__ . '/../shares/header.php';
                             <td>
                                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                                     <a href="/QL_NhanSu/Employee/edit/<?php echo $employee->MaNV; ?>" 
-                                       class="btn btn-warning btn-sm">
+                                       class="btn btn-warning btn-sm me-1" 
+                                       title="Chỉnh sửa">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <a href="/QL_NhanSu/Employee/delete/<?php echo $employee->MaNV; ?>" 
