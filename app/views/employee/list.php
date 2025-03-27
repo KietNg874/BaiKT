@@ -15,15 +15,15 @@ include __DIR__ . '/../shares/header.php';
 
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
-            <thead class="table-dark">
+            <thead class="bg-secondary">
                 <tr>
-                    <th scope="col">Mã NV</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Giới tính</th>
-                    <th scope="col">Nơi Sinh</th>
-                    <th scope="col">Tên Phòng</th>
-                    <th scope="col">Lương</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="text-center">Mã NV</th>
+                    <th scope="col" class="text-center">Tên</th>
+                    <th scope="col" class="text-center">Giới tính</th>
+                    <th scope="col" class="text-center">Nơi Sinh</th>
+                    <th scope="col" class="text-center">Tên Phòng</th>
+                    <th scope="col" class="text-center">Lương</th>
+                    <th scope="col" class="text-center"></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,29 +34,30 @@ include __DIR__ . '/../shares/header.php';
                 <?php else: ?>
                     <?php foreach ($employees as $employee): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($employee->MaNV, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($employee->TenNV, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td>
+                            <td class="text-center"><?php echo htmlspecialchars($employee->MaNV, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td class="text-center"><?php echo htmlspecialchars($employee->TenNV, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td class="text-center">
                                 <?php if ($employee->Phai === 'NU'): ?>
-                                    <img src="/QL_NhanSu/public/images/woman.jpg" alt="Woman" style="width: 30px; height: auto;">
+                                    <img src="/QL_NhanSu/public/images/woman.jpg" alt="Woman" style="width: 30px; height: auto; display: block; margin: 0 auto;">
                                 <?php else: ?>
-                                    <img src="/QL_NhanSu/public/images/man.jpg" alt="Man" style="width: 30px; height: auto;">
+                                    <img src="/QL_NhanSu/public/images/man.jpg" alt="Man" style="width: 30px; height: auto; display: block; margin: 0 auto;">
                                 <?php endif; ?>
                             </td>
-                            <td><?php echo htmlspecialchars($employee->NoiSinh, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($employee->TenPhong ?? 'None', ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo number_format($employee->Luong, 0, ',', '.'); ?></td>
-                            <td>
+                            <td class="text-center"><?php echo htmlspecialchars($employee->NoiSinh, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td class="text-center"><?php echo htmlspecialchars($employee->TenPhong ?? 'None', ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td class="text-center"><?php echo number_format($employee->Luong, 0, ',', '.'); ?> VNĐ</td>
+                            <td class="text-center">
                                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                                     <a href="/QL_NhanSu/Employee/edit/<?php echo $employee->MaNV; ?>" 
-                                       class="btn btn-warning btn-sm me-1" 
+                                       class="btn btn-primary btn-sm me-1" 
                                        title="Chỉnh sửa">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <a href="/QL_NhanSu/Employee/delete/<?php echo $employee->MaNV; ?>" 
-                                    class="btn btn-danger btn-sm" 
-   onclick="return confirm('Bạn muốn xóa nhân viên này?');">
-    <i class="bi bi-trash"></i>
+                                       class="btn btn-danger btn-sm" 
+                                       onclick="return confirm('Bạn muốn xóa nhân viên này?');"
+                                       title="Xóa">
+                                        <i class="bi bi-trash"></i>
                                     </a>
                                 <?php endif; ?>
                             </td>

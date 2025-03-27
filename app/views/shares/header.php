@@ -21,9 +21,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/QL_NhanSu/Employee/list">Nhân Viên</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/QL_NhanSu/Login">Đăng Nhập</a>
-                </li>
             </ul>
         </div>
     </nav>
